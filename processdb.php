@@ -54,6 +54,7 @@ if(isset($_GET['edit'],$_GET['token'])
   $name= $row['name'];
   $location = $row['location'];
 }
+
 if(isset($_POST['update'],$_POST['token'])
 && $_POST['token'] === $_SESSION['token']) {
   $id = $_POST['id'];

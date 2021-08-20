@@ -18,9 +18,7 @@ createToken();
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
-
-<?php
+  <?php
   if(isset($_SESSION['message'])): ?>
   <div class="alert alert-<?=$_SESSION['msg_type']?>">
     <?php
@@ -28,7 +26,7 @@ createToken();
     unset($_SESSION['message']);
     ?>
   </div>
-<?php endif ?>
+ <?php endif ?>
 
 <div class="container">
 
@@ -57,8 +55,8 @@ createToken();
           <td>
             <a href="index.php?edit=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
               class="btn btn-info">編集</a>
-            <a href="processdb.php?delete=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
-              class="btn btn-danger">削除</a>
+              <a href="processdb.php?delete=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
+                class="btn btn-danger">削除</a>
               </td>
             </tr>
           <?php endwhile; ?>
