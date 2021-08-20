@@ -1,8 +1,8 @@
 <?php require_once 'processdb.php';
-        require_once 'functions.php';
-        createToken();
-        ?>
-        
+require_once 'functions.php';
+createToken();
+?>
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -20,7 +20,7 @@
 
 
 
-  <?php
+<?php
   if(isset($_SESSION['message'])): ?>
   <div class="alert alert-<?=$_SESSION['msg_type']?>">
     <?php
@@ -52,13 +52,13 @@
         <?php
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
         <tr>
-          <td class="align-middle"><?php echo $row['name']; ?></td>
+          <td class="align-middle"><?php echo $row['name'] ; ?></td>
           <td class="align-middle"><?php echo $row['location']; ?></td>
           <td>
-            <a href="index.php?edit=<?php echo $row['id']; ?>"
+            <a href="index.php?edit=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
               class="btn btn-info">編集</a>
-              <a href="processdb.php?delete=<?php echo $row['id']; ?>"
-                class="btn btn-danger">削除</a>
+            <a href="processdb.php?delete=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
+              class="btn btn-danger">削除</a>
               </td>
             </tr>
           <?php endwhile; ?>
@@ -88,11 +88,11 @@
           <?php endif; ?>
         </div>
       </form>
-</div>
+    </div>
 
-      <div class="row justify-content-center">
-<button type="button" class="btn btn-secondary" onclick="location.href='index.php'">戻る</button>
-        </div>
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-secondary" onclick="location.href='index.php'">戻る</button>
+    </div>
   </div>
 </body>
 </html>

@@ -7,7 +7,7 @@ $location= '';
 
 // データを挿入
 if (isset($_POST['save'],$_POST['token'])
- && $_POST['token'] === $_SESSION['token']) {
+&& $_POST['token'] === $_SESSION['token']) {
   $name = $_POST['name'];
   $location = $_POST['location'];
   $name = h($name);
@@ -27,21 +27,22 @@ if (isset($_POST['save'],$_POST['token'])
 }
 
 // データを削除
-if(isset($_GET['delete'])){
+if(isset($_GET['delete'],$_GET['token'])
+&& $_GET['token'] === $_SESSION['token']) {
   $id = $_GET['delete'];//パラメータを取得
   $dbh = dbconnect();
   $sql = 'DELETE FROM data WHERE id = :id;';
   $stmt = $dbh->prepare($sql);
   $stmt->bindValue(':id', $id, PDO::PARAM_INT);
   $stmt->execute();
-
   $_SESSION['message'] = "削除されました";
   $_SESSION['msg_type'] = "danger";
   header("location: index.php");
 }
 
-// データを編集
-if(isset($_GET['edit'])){
+//データを編集
+if(isset($_GET['edit'],$_GET['token'])
+&& $_GET['token'] === $_SESSION['token']) {
   $id = $_GET['edit'];
   $dbh = dbconnect();
   $update = true;
@@ -53,9 +54,8 @@ if(isset($_GET['edit'])){
   $name= $row['name'];
   $location = $row['location'];
 }
-
 if(isset($_POST['update'],$_POST['token'])
- && $_POST['token'] === $_SESSION['token']) {
+&& $_POST['token'] === $_SESSION['token']) {
   $id = $_POST['id'];
   $name = $_POST['name'];
   $location = $_POST['location'];
@@ -68,7 +68,6 @@ if(isset($_POST['update'],$_POST['token'])
   $stmt->bindValue(':location', $location, PDO::PARAM_STR);
   $stmt->bindValue(':id', $id, PDO::PARAM_INT);
   $stmt->execute();
-
   $_SESSION['message'] = "変更されました";
   $_SESSION['msg_type'] = "warning";
   header("location: index.php");
