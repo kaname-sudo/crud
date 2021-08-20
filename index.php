@@ -55,10 +55,10 @@ createToken();
           <td>
             <a href="index.php?edit=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
               class="btn btn-info">編集</a>
-              <a href="processdb.php?delete=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
-                class="btn btn-danger">削除</a>
-              </td>
-            </tr>
+            <a href="processdb.php?delete=<?php echo $row['id'];?> & token=<?= h($_SESSION['token']);?>"
+              class="btn btn-danger">削除</a>
+          </td>
+        </tr>
           <?php endwhile; ?>
         </tbody>
       </table>
